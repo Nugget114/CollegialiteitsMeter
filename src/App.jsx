@@ -14,8 +14,7 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // const timestamp = Date.now()
-    const timestamp = new Date("09/30/2022 16:25:50");
+    const timestamp = Date.now()
     const nieuweTaak = {
       punten: Number(puntenInput),
       opdracht: taakInput,
