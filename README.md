@@ -9,8 +9,8 @@ This app counts up the points you received from doing certain tasks at your work
 
 ### How to use the app?
 - Insert a value between -50 and 50 points.
-- Give a reason for the points to put on your name.
-- Press "Add".
+- Give a reason for the points to gifted to you.
+- Press "Voeg toe".
 - And you are done!
 
 Example of how it looks online: https://collegialiteit.netlify.app/
