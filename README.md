@@ -1,4 +1,4 @@
-# CollegialiteitsMeter
+# Collegialiteit meter / Collegiality meter
 
 ### What does this app do?
 This app counts up the points you received from doing certain tasks at your workplace, the more points you receive, the better!
@@ -8,6 +8,11 @@ This app counts up the points you received from doing certain tasks at your work
  The colleague of the month can be decided thanks to this system, or any other reward system used in your cooperation!
 
 ### How to use the app?
+- Insert a value between -50 and 50 points.
+- Give a reason for the points to put on your name.
+- Press "Add".
+- And you are done!
+
 Example of how it looks online: https://collegialiteit.netlify.app/
 
 ### What will be added and or tweaked?
