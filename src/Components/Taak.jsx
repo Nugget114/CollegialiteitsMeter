@@ -1,6 +1,11 @@
 import { convertTimestamp } from './../functions';
 import { useState, useEffect } from "react";
 
+import deleteImage from "../assets/images/delete.svg";
+import editImage from "../assets/images/edit.svg";
+import checkImage from "../assets/images/check.svg";
+import kruisImage from "../assets/image/kruis.svg";
+
 export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, handleTaakVerwijderen, accepteerBewerkTaak, isSelected, isEditing }) {
 
     const [bewerkenTekst, setBewerkenTekst] = useState(taak.opdracht);
@@ -41,16 +46,16 @@ export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, 
                 isSelected && !isEditing
                 ? (
                     <div className="taak__action">
-                        <button onClick={(e) => handleEditClick(e, index)} className="action-btn"><img src="src/assets/images/edit.svg"></img></button>
-                        <button onClick={(e) => handleDeleteClick(e, index)} className="action-btn"><img src="src/assets/images/delete.svg"></img></button>
+                        <button onClick={(e) => handleEditClick(e, index)} className="action-btn"><img src={editImage} /></button>
+                        <button onClick={(e) => handleDeleteClick(e, index)} className="action-btn"><img src={deleteImage} /></button>
                     </div>
                 ) :
                 isEditing ?
                 (
                     // Editing
                     <div className="taak__action">
-                        <button onClick={(e) => handleEditAcceptClick(e, index)} className="action-btn"><img src="src/assets/images/check.svg"></img></button>
-                        <button className="action-btn"><img src="src/assets/images/kruis.svg"></img></button>
+                        <button onClick={(e) => handleEditAcceptClick(e, index)} className="action-btn"><img src={checkImage} /></button>
+                        <button className="action-btn"><img src={kruisImage}></button>
                     </div>
                 ) :
                 (
