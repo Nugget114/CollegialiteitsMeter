@@ -55,7 +55,7 @@ export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, 
                     // Editing
                     <div className="taak__action">
                         <button onClick={(e) => handleEditAcceptClick(e, index)} className="action-btn"><img src={checkImage} /></button>
-                        <button className="action-btn"><img src={kruisImage}></button>
+                        <button className="action-btn"><img src={kruisImage} /></button>
                     </div>
                 ) :
                 (
