@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.scss'
 import useLocalStorage from './hooks/useLocalStorage';
+import Taak from './Components/Taak';
 
 function App() {
   const [taken, setTaken] = useLocalStorage("taken", []);
@@ -18,13 +19,21 @@ function App() {
     const nieuweTaak = {
       punten: Number(puntenInput),
       opdracht: taakInput,
-      datum: timestamp
+      datum: timestamp,
+      editing: false,
+      selected: false
     };
 
     setPuntenInput("");
     setTaakInput("");
 
-    setTaken([nieuweTaak, ...taken]);
+    const takenCopy = [...taken];
+    takenCopy.forEach(x => {
+      x.editing = false;
+      x.selected = false;
+    })
+
+    setTaken([nieuweTaak, ...takenCopy]);
   }
 
   function berekenTotalePunten() {
@@ -32,34 +41,59 @@ function App() {
     return Math.round(totalePunten * 100) / 100;
   }
 
-  function formatToTime(number) {
-    return ("0" + number).slice(-2);
-  }
+  function handleTaakKlik(index) {
+    let takenCopy = [...taken];
+    const isSelected = takenCopy[index].selected;
 
-  function convertTimestamp(timestamp, method="short") {
-    const date = new Date(timestamp);
-    const day = date.getDate();
-    const month = date.toLocaleString('nl-NL', { month: 'long' });
-  
-    if (method === "short") {  
-      return `${day} ${month}`;
+    takenCopy.forEach(x => {
+      x.selected = false;
+      x.editing = false;
+    })
+
+    if (!isSelected) {
+      takenCopy[index].selected = true;
     }
 
-    const year = date.getFullYear();
-    const hours = formatToTime(date.getHours());
-    const minutes = formatToTime(date.getMinutes());
-    const seconds = formatToTime(date.getSeconds());
-
-    return `${day} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+    setTaken(takenCopy);
   }
 
-  function handleTaakKlik(index) {
+  function bewerkTaak(e, index) {
+    e.stopPropagation();
+    // Bewerken aanzetten
+    const takenCopy = [...taken];
+    const isEditing = takenCopy[index].editing;
+
+    if (!isEditing) {
+      takenCopy[index].editing = true;
+    }
+    setTaken(takenCopy);
+  } 
+
+  function verwijderTaak(e, index) {
+    e.stopPropagation();
     if (confirm("Weet u zeker dat u deze taak wilt verwijderen?")) {
       const takenCopy = [...taken];
       takenCopy.splice(index, 1);
       setTaken(takenCopy);
     }
   } 
+
+  function accepteerBewerkTaak(index, nieuweOpdrachtTekst) {
+    const takenCopy = [...taken];
+    takenCopy[index].opdracht = nieuweOpdrachtTekst;
+    takenCopy[index].editing = false;
+
+    setTaken(takenCopy);
+  } 
+
+  function verwijderTaak(e, index) {
+    e.stopPropagation();
+    if (confirm("Weet u zeker dat u deze taak wilt verwijderen?")) {
+      const takenCopy = [...taken];
+      takenCopy.splice(index, 1);
+      setTaken(takenCopy);
+    }
+  }
 
   return (
     <div className="App">
@@ -72,14 +106,17 @@ function App() {
           {
             taken.map((taak, i) => {
               return (
-                <div className="taak" key={`${i}`} onClick={() => handleTaakKlik(i)}>
-                  <div className="taak__punten-container">
-                    <p className="taak__punten">{taak.punten}</p>
-                    <p className="taak__punten-omschrijving">punten</p>
-                  </div>
-                  <p className="taak__omschrijving">{taak.opdracht}</p>
-                  <p className="taak__datum" title={convertTimestamp(taak.datum, "long")}>{convertTimestamp(taak.datum)}</p>
-                </div>
+                <Taak 
+                  key={`${taak.opdracht}${i}`}
+                  index={i}
+                  taak={taak}
+                  handleTaakKlik={() => handleTaakKlik(i)}
+                  handleTaakBewerken={bewerkTaak}
+                  handleTaakVerwijderen={verwijderTaak}
+                  accepteerBewerkTaak={accepteerBewerkTaak}
+                  isEditing={taak.editing}
+                  isSelected={taak.selected} 
+                />
               )
             })
           }

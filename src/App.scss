@@ -2,7 +2,7 @@ $pageWidth: 960px;
 
 
 .totale-punten {
-    margin-top: 68px;
+    padding-top: 68px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,7 +26,23 @@ $pageWidth: 960px;
     }
 }
 
-.takenlijst {
+.action-btn{
+    margin: 0;
+    margin-left: 4px;
+    height: 100%;
+    padding: 10px 14px;
+    box-sizing: border-box;
+
+    &:first-of-type {
+        margin-left: 0;
+    }
+
+    img {
+        height: 26px;
+    }
+}
+
+.takenlijst {    
     position: relative;
     margin: 0 auto;
     margin-top: 72px;
@@ -60,13 +76,15 @@ $pageWidth: 960px;
     margin-top: 24px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+
 
     &__punten-container {
         margin-top: -10px;
         font-style: normal;
         line-height: normal;
         min-width: 120px;
-        margin-right: 12px;
     }
 
     &__punten {
@@ -88,6 +106,21 @@ $pageWidth: 960px;
         font-weight: 400;
         font-size: 24px;
         line-height: 29px;
+        text-align: center;
+    }
+
+    &__edit-input {
+        margin: 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        border: 0;
+        outline: 0;
+        text-align: center;
+        padding: 12px;
+        width: 60%;
+        max-width: 500px;
     }
 
     &__datum {
@@ -102,8 +135,22 @@ $pageWidth: 960px;
         text-align: right;
     }
 
+    &__action {
+        text-align: right;
+        min-width: 146px;
+        margin-left: 12px;
+    }
+
     &:last-child {
         margin-bottom: 100px;
+    }
+
+    &:hover:not(.taak--selected) {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    &--selected {
+        background-color: rgba(255, 255, 255, 0.07);
     }
 }
 
@@ -114,7 +161,7 @@ $pageWidth: 960px;
     justify-content: space-between;
     align-items: flex-end;
     border-radius: 4px;
-    max-width: $pageWidth / 6 * 5;
+    max-width: calc($pageWidth / 6 * 5);
 
     &__label {
         display: flex;
