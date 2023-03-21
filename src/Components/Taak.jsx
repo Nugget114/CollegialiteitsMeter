@@ -1,10 +1,10 @@
 import { convertTimestamp } from './../functions';
 import { useState, useEffect } from "react";
 
-import deleteImage from "../assets/images/delete.svg";
-import editImage from "../assets/images/edit.svg";
-import checkImage from "../assets/images/check.svg";
-import kruisImage from "../assets/image/kruis.svg";
+import deleteImage from "./../assets/images/delete.svg";
+import editImage from "./../assets/images/edit.svg";
+import checkImage from "./../assets/images/check.svg";
+import kruisImage from "./../assets/images/kruis.svg";
 
 export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, handleTaakVerwijderen, accepteerBewerkTaak, isSelected, isEditing }) {
 
