@@ -1,21 +1,64 @@
+@use "themes.scss";
+
 html, body, .App {
   height: 100vh;
 }
 
 :root {
+
+  --invisible: rgba(rgba(0, 0, 0, 0));
+  --icon-size: 20px;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--primary-text-color);
+  background-color: var(--bg-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-btn-text-color);
+}
+
+.icon {
+  display: inline-block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: var(--icon-size);
+  -webkit-mask-size: var(--icon-size);
+  padding-right: 4px;
+  background-color: var(--theme-btn-text-color) !important;
+
+  &.icon-theme-os-default {
+    $contrastsvg: url("./assets/images/contrast.svg");
+    mask-image: $contrastsvg;
+    -webkit-mask-image: $contrastsvg;
+  }
+
+  &.icon-theme-light {
+    $lightsvg: url("./assets/images/light.svg");
+    mask-image: $lightsvg;
+    -webkit-mask-image: $lightsvg;
+  }
+
+  &.icon-theme-dark {
+    $darksvg: url("./assets/images/dark.svg");
+    mask-image: $darksvg;
+    -webkit-mask-image: $darksvg;
+  }
 }
 
 a {
@@ -28,6 +71,7 @@ a:hover {
 }
 
 body {
+  font-size: 100%;
   margin: 0;
   min-width: 320px;
 }
@@ -48,29 +92,8 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #000000;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-
-  .takenlijst-container {
-    &:after {
-      background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%);
-    }
-  }
 }

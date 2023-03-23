@@ -3,15 +3,44 @@ import './App.scss'
 import useLocalStorage from './hooks/useLocalStorage';
 import Taak from './Components/Taak';
 
+import contrastImage from "./assets/images/contrast.svg";
+import lightImage from "./assets/images/light.svg";
+import darkImage from "./assets/images/dark.svg";
+
 function App() {
   const [taken, setTaken] = useLocalStorage("taken", []);
   const [puntenInput, setPuntenInput] = useState("");
   const [taakInput, setTaakInput] = useState("");
+  const [theme, setTheme] = useLocalStorage("theme", "os-default");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     document.title = `${berekenTotalePunten()} punten`;
   }, [taken]);
 
+  useEffect(() => {
+    if (theme === "os-default") {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.className = "dark";
+      } else {
+        document.documentElement.className = "light";
+      }
+    } else {
+      document.documentElement.className = theme;
+    }
+
+    const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+
+    matchMedia.addEventListener('change', OsThemeChange);
+    return () => matchMedia.removeEventListener('change', OsThemeChange);
+  }, [theme]);
+
+  function OsThemeChange(e) {
+    if (theme != "os-default") return;
+    
+    document.documentElement.className = e.matches ? "dark" : "light";
+  }
+  
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -97,6 +126,29 @@ function App() {
 
   return (
     <div className="App">
+      <div className="theme-button-container">
+        <button className="theme-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span className="button-wrapper">
+              <span className={"icon icon-theme-" + theme} />
+                Theme
+          </span>
+        </button>
+        {
+          isMenuOpen && (
+          <div className="theme-menu">
+            <button className="theme-menu__theme-button" onClick={() => setTheme("os-default")}>
+              <span className="icon icon-theme-os-default" />OS Default
+            </button>
+            <button className="theme-menu__theme-button" onClick={() => setTheme("light")}>
+              <span className="icon icon-theme-light" />Light
+              </button>
+            <button className="theme-menu__theme-button" onClick={() => setTheme("dark")}>
+              <span className="icon icon-theme-dark" />Dark
+            </button>
+          </div>
+          )
+        }
+      </div>
       <div className="totale-punten">
         <p className="totale-punten__punten">{berekenTotalePunten()}</p>
         <p className="totale-punten__beschrijving">Punten op de schaal van collegialiteit</p>
@@ -130,9 +182,9 @@ function App() {
             type="number"
             step="0.01"
             pattern="^-?\d+(\.\d{1,2})?"
-            min="-50"
-            max="50"
-            placeholder="50"
+            min="-1000"
+            max="1000"
+            placeholder="1000"
             value={puntenInput}
             onChange={(e) => setPuntenInput(e.target.value)}
             required

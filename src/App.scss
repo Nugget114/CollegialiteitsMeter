@@ -1,8 +1,65 @@
 $pageWidth: 960px;
 
+.theme-button-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: $pageWidth;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 16px;
+
+    .theme-menu {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: var(--invisible);
+        position: absolute;
+        top: 62px;
+        border: 1px solid #7a7a7a80;
+        box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.2);
+        /* display: none; */
+
+        .icon {
+            padding-right: 10px;
+        }
+
+        &__theme-button {
+            display: flex;
+            flex-direction: row;
+            //justify-content: center;
+            align-items: center;
+            //flex-direction: column;
+            color: var(--primary-text-color);
+            background-color: var(--invisible);
+            padding: 0 12px;
+            height: 40px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        :hover {
+            background-color: var(--taak-hover-color);
+            color: var(--primary-text-color);
+        }
+    }
+
+    .theme-button {
+        justify-content: center;
+        margin-top: 27px;
+        max-width: fit-content;
+        color: var(--theme-btn-text-color);
+        border: solid 1px #7a7a7a80;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 6px;
+    }
+}
 
 .totale-punten {
-    padding-top: 68px;
+    padding-top: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +84,7 @@ $pageWidth: 960px;
 }
 
 .action-btn{
+    background-color: var(--action-btn);
     margin: 0;
     margin-left: 4px;
     height: 100%;
@@ -65,7 +123,7 @@ $pageWidth: 960px;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(0deg, rgb(36, 36, 36) 0%, rgba(36, 36, 36, 0) 10%);
+            background: var(--task-gradient);
             pointer-events: none;
         }
     }
@@ -73,7 +131,7 @@ $pageWidth: 960px;
 
 .taak {
     cursor: pointer;
-    margin-top: 24px;
+    margin-top: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,6 +168,9 @@ $pageWidth: 960px;
     }
 
     &__edit-input {
+        color: var(--primary-text-color);
+        background-color: var(--edit-bg-color);
+        border-radius: 5px;
         margin: 0;
         font-style: normal;
         font-weight: 400;
@@ -130,7 +191,7 @@ $pageWidth: 960px;
         font-weight: 400;
         font-size: 24px;
         line-height: 29px;
-        color: #B3B3B3;
+        color: var(--date-text-color);
         min-width: 146px;
         text-align: right;
     }
@@ -146,11 +207,13 @@ $pageWidth: 960px;
     }
 
     &:hover:not(.taak--selected) {
-        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 5px;
+        background-color: var(--taak-hover-color);
     }
 
     &--selected {
-        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 5px;
+        background-color: var(--taak-select-color);
     }
 }
 
@@ -186,6 +249,10 @@ $pageWidth: 960px;
     }
 
     &__input {
+        border-radius: 5px;
+        border: 1px solid #7a7a7a80;
+        color: var(--primary-text-color);
+        background-color: var(--input-bg-color);
         height: 64px;
         min-width: 64px;
         width: 100%;
@@ -195,6 +262,7 @@ $pageWidth: 960px;
     }
 
     &__toevoegen-button {
+        color: var(--primary-button-text-color);
         width: 20%;
         margin-left: 36px;
         text-align: center;
@@ -207,6 +275,10 @@ $pageWidth: 960px;
 }
 
 @media screen and (max-width: $pageWidth) {
+    .theme-button-container {
+        padding-right: 24px;
+    }
+
     .takenlijst {
         margin-left: 24px;
         margin-right: 24px;
