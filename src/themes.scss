@@ -1,0 +1,29 @@
+:root {
+    --theme-btn-text-color: #404040;
+    --bg-color: #fff;
+    --primary-text-color: #222;
+    --date-text-color: #b3b3b3;
+    --button-bg-color: #f9f9f9;
+    --task-gradient: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 10%);
+    --action-btn: #c4c4c4;
+    --edit-bg-color: #f5f5f5;
+    --taak-hover-color: rgba(0, 0, 0, 0.03);
+    --taak-select-color: rgba(0, 0, 0, 0.07);
+    --input-bg-color: rgb(255, 255, 255);
+    --primary-button-text-color: #fff;
+}
+
+:root.dark {
+    --theme-btn-text-color: #E9E9E9;
+    --bg-color: #242424;
+    --primary-text-color: rgba(255, 255, 255, 0.87);
+    --date-text-color: #B3B3B3;
+    --button-bg-color: #1a1a1a;
+    --task-gradient: linear-gradient(0deg, rgb(36, 36, 36) 0%, rgba(36, 36, 36, 0) 10%);
+    --action-btn: #222;
+    --edit-bg-color: #444444;
+    --taak-hover-color: rgba(255, 255, 255, 0.03);
+    --taak-select-color: rgba(255, 255, 255, 0.07);
+    --input-bg-color: rgb(53, 53, 53);
+    --primary-button-text-color: #fff;
+}
