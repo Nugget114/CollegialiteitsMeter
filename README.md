@@ -8,16 +8,26 @@ This app counts up the points you received from doing certain tasks at your work
  The colleague of the month can be decided thanks to this system, or any other reward system used in your cooperation!
 
 ### How to use the app?
-- Insert a value between -50 and 50 points.
+- Insert a value between -1000 and 1000 points.
 - Give a reason for the points to gifted to you.
 - Press "Voeg toe".
 - And you are done!
 
 Example of how it looks online: https://collegialiteit.netlify.app/
 
-### What will be added and or tweaked?
+### What will be added?
 1. Better mobile support.
-1. Finetune the app to come across more user-friendly.
-1. Some things I haven't discovered yet!
+2. Finetune the app to come across more user-friendly.
+3. Adding names, so you can see who gave you those points.
+4. A line graph so you can see how well you are doing!
+5. Adding more languages.
+6. Some things I haven't thought about yet!
+
+### What will be tweaked?
+1. Preloading images.
+2. Clicking next to an selected item is not going to deselect it, we are working on that right now.
+3. The theme button doesn't unpop whenever you click somewhere else, that needs some attention.
+4. Pressing enter when editing a message does nothing.
+5. Some other issues I need to find out about.
 
 I am open for any feedback!
