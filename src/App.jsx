@@ -2,10 +2,25 @@ import { useState, useEffect } from 'react'
 import './App.scss'
 import useLocalStorage from './hooks/useLocalStorage';
 import Taak from './Components/Taak';
+import ThemeMenu from './Components/ThemeMenu';
 
-import contrastImage from "./assets/images/contrast.svg";
-import lightImage from "./assets/images/light.svg";
-import darkImage from "./assets/images/dark.svg";
+import CheckImg from './assets/images/check.svg'
+import ConstrastImg from './assets/images/contrast.svg'
+import DarkImg from './assets/images/dark.svg'
+import DeleteImg from './assets/images/delete.svg'
+import EditImg from './assets/images/edit.svg'
+import KruisImg from './assets/images/kruis.svg'
+import LightImg from './assets/images/light.svg'
+
+const preloadSrcList = [
+  ConstrastImg,
+  DarkImg,
+  LightImg,
+  EditImg,
+  DeleteImg,
+  CheckImg,
+  KruisImg
+]
 
 function App() {
   const [taken, setTaken] = useLocalStorage("taken", []);
@@ -13,6 +28,10 @@ function App() {
   const [taakInput, setTaakInput] = useState("");
   const [theme, setTheme] = useLocalStorage("theme", "os-default");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    preloadSrcList.forEach(x => new Image().src = x);
+  }, []);  
 
   useEffect(() => {
     document.title = `${berekenTotalePunten()} punten`;
@@ -81,7 +100,7 @@ function App() {
 
     if (!isSelected) {
       takenCopy[index].selected = true;
-    }
+    } 
 
     setTaken(takenCopy);
   }
@@ -124,6 +143,10 @@ function App() {
     }
   }
 
+  function handleSetTheme(theme) {
+    setTheme(theme);
+  }
+
   return (
     <div className="App">
       <div className="theme-button-container">
@@ -135,17 +158,7 @@ function App() {
         </button>
         {
           isMenuOpen && (
-          <div className="theme-menu">
-            <button className="theme-menu__theme-button" onClick={() => setTheme("os-default")}>
-              <span className="icon icon-theme-os-default" />OS Default
-            </button>
-            <button className="theme-menu__theme-button" onClick={() => setTheme("light")}>
-              <span className="icon icon-theme-light" />Light
-              </button>
-            <button className="theme-menu__theme-button" onClick={() => setTheme("dark")}>
-              <span className="icon icon-theme-dark" />Dark
-            </button>
-          </div>
+            <ThemeMenu handleSetTheme={handleSetTheme} closeMenu={() => setIsMenuOpen(false)}/>
           )
         }
       </div>

@@ -1,5 +1,6 @@
+import { useState, useEffect, useRef } from "react";
+
 import { convertTimestamp } from './../functions';
-import { useState, useEffect } from "react";
 
 import deleteImage from "./../assets/images/delete.svg";
 import editImage from "./../assets/images/edit.svg";
@@ -9,6 +10,19 @@ import kruisImage from "./../assets/images/kruis.svg";
 export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, handleTaakVerwijderen, accepteerBewerkTaak, isSelected, isEditing }) {
 
     const [bewerkenTekst, setBewerkenTekst] = useState(taak.opdracht);
+
+    const taakRef = useRef();
+
+    const handleClickOutside = e => {
+        if (!taakRef.current.contains(e.target) && taak.selected) {
+            handleTaakKlik(index);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     useEffect(() => {
         setBewerkenTekst(taak.opdracht);
@@ -28,7 +42,7 @@ export default function Taak({ taak, index, handleTaakKlik, handleTaakBewerken, 
     }
 
     return (
-        <div className={isSelected ? "taak taak--selected" : "taak"} onClick={handleTaakKlik}>
+        <div ref={taakRef} className={isSelected ? "taak taak--selected" : "taak"} onClick={handleTaakKlik}>
             <div className="taak__punten-container">
             <p className="taak__punten">{taak.punten}</p>
             <p className="taak__punten-omschrijving">punten</p>
