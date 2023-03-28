@@ -24,10 +24,7 @@ Example of how it looks online: https://collegialiteit.netlify.app/
 6. Some things I haven't thought about yet!
 
 ### What will be tweaked?
-1. Preloading images.
-2. Clicking next to an selected item is not going to deselect it, we are working on that right now.
-3. The theme button doesn't unpop whenever you click somewhere else, that needs some attention.
-4. Pressing enter when editing a message does nothing.
-5. Some other issues I need to find out about.
+1. Pressing enter when editing a message does nothing.
+2. Some other issues I need to find out about.
 
 I am open for any feedback!
