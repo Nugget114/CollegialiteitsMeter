@@ -25,6 +25,8 @@ Example of how it looks online: https://collegialiteit.netlify.app/
 
 ### What will be tweaked?
 1. Pressing enter when editing a message does nothing.
-2. Some other issues I need to find out about.
+2. The edit input should become selected when editing, but it doesn't.
+3. 
+5. Some other issues I need to find out about.
 
 I am open for any feedback!
