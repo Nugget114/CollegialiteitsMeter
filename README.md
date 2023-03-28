@@ -16,17 +16,17 @@ This app counts up the points you received from doing certain tasks at your work
 Example of how it looks online: https://collegialiteit.netlify.app/
 
 ### What will be added?
-1. Better mobile support.
-2. Finetune the app to come across more user-friendly.
-3. Adding names, so you can see who gave you those points.
-4. A line graph so you can see how well you are doing!
-5. Adding more languages.
-6. Some things I haven't thought about yet!
+1. Adding names, so you can see who gave you those points.
+2. A line graph so you can see how well you are doing!
+3. Adding more languages.
+4. When points get added (or removed!) the total counter should animate.
+5. Some things I haven't thought about yet!
 
 ### What will be tweaked?
 1. Pressing enter when editing a message does nothing.
 2. The edit input should become selected when editing, but it doesn't.
-3. 
+3. Become more userfriendly!
+4. Better mobile support.
 5. Some other issues I need to find out about.
 
 I am open for any feedback!
